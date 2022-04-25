@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/EggClock_andriod_H4/app/src/main/res/drawable/backgrund_1.xml" value="0.199" />
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/EggClock_andriod_H4/app/src/main/res/drawable/ic_hard.xml" value="0.199" />
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/EggClock_andriod_H4/app/src/main/res/drawable/ic_medium.xml" value="0.176" />
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/EggClock_andriod_H4/app/src/main/res/drawable/ic_soft.xml" value="0.199" />
         <entry key="..\:/Users/uncha/AndroidStudioProjects/EggClock_andriod_H4/app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>

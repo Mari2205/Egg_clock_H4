@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter
 
 val isTimerStarted = false // TODO: marby move later on
 var timeChosen = 0;
+private lateinit var countDownTimer: CountDownTimer
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,16 +28,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun timer(numOfMin:Int){
+    fun timer(numOfMin:Int) {
         val textView_timer = findViewById<TextView>(R.id.textView_timer)
 
-        val timeInSec : Long =  (numOfMin * 60).toLong();
-        val timeChoseMiliSec : Long = (timeInSec * 1000).toLong()
-        val countDownInterval : Long = 1000
+        val timeInSec: Long = (numOfMin * 60).toLong();
+        val timeChoseMiliSec: Long = (timeInSec * 1000).toLong()
+        val countDownInterval: Long = 1000
 
         val tag = "timer_loged"
 
-        val countDownTimer =  object : CountDownTimer(timeChoseMiliSec, countDownInterval){
+        countDownTimer = object : CountDownTimer(timeChoseMiliSec, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
                 Log.d(tag, "${millisUntilFinished / 1000}")
                 var timeLeft = convertMiliSecToMinAndSec(millisUntilFinished)
@@ -44,11 +45,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                Toast.makeText(applicationContext, "your egg is finished",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "your egg is finished", Toast.LENGTH_LONG).show()
             }
         }
         countDownTimer.start()
-
     }
 
     fun convertMiliSecToMinAndSec(milisec:Long): String{
@@ -79,20 +79,31 @@ class MainActivity : AppCompatActivity() {
         btn_startTimer.isEnabled = true
     }
 
-    fun onClikStartTime(view: View){
-        val btn_startTimer = findViewById<Button>(R.id.btn_start) // TODO: double code
+    fun onClikStartTime(view: View) {
+        val btn_start = findViewById<Button>(R.id.btn_start)
+        val textView_time = findViewById<TextView>(R.id.textView_timer)
 
-        btn_startTimer.isEnabled = false
+        if (btn_start.text == "Start time") {
+            btn_start.setText("Stop")
 
-        if (timeChosen > 0) {
-            timer(timeChosen)
+            val btn_startTimer = findViewById<Button>(R.id.btn_start) // TODO: double code
+
+//            btn_startTimer.isEnabled = false
+
+            if (timeChosen > 0) {
+                timer(timeChosen)
+            } else {
+                Toast.makeText(applicationContext, "Pleace chosse an time", Toast.LENGTH_SHORT)
+
+            }
         }
-        else{
-            Toast.makeText(applicationContext,"Pleace chosse an time", Toast.LENGTH_SHORT)
+        else {
+            countDownTimer.cancel()
+            btn_start.setText("Start time")
+            textView_time.setText("00:00")
+            btn_start.isEnabled = false
 
         }
-
-
     }
 }
 
