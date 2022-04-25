@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     fun timer(numOfMin:Int){
         val textView_timer = findViewById<TextView>(R.id.textView_timer)
 
-        val timeInSec : Long =  (numOfMin * 60).toLong()
+        val timeInSec : Long =  (numOfMin * 60).toLong();
         val timeChoseMiliSec : Long = (timeInSec * 1000).toLong()
         val countDownInterval : Long = 1000
 
